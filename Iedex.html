@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      width: 360px;
+      text-align: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .logo h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+    .display {
+      width: 100%;
+      height: 60px;
+      text-align: right;
+      font-size: 2rem;
+      margin-bottom: 15px;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f7f7f7;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      height: 60px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .operator {
+      background: #667eea;
+      color: white;
+    }
+    .equal {
+      grid-column: span 2;
+      background: #28a745;
+      color: white;
+    }
+    .clear {
+      background: #dc3545;
+      color: white;
+    }
+    .backspace {
+      background: #ff9800;
+      color: white;
+    }
+    .number {
+      background: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <!-- 🔹 Logo + Name -->
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055644.png" alt="Calculator Logo">
+      <h2>Smart Calculator</h2>
+    </div>
+
+    <!-- 🔹 Display -->
+    <input type="text" class="display" id="display" disabled>
+
+    <!-- 🔹 Buttons -->
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="backspace" onclick="backspace()">⌫</button>
+      <button class="operator" onclick="append('%')">%</button>
+      <button class="operator" onclick="append('/')">÷</button>
+
+      <button class="number" onclick="append('7')">7</button>
+      <button class="number" onclick="append('8')">8</button>
+      <button class="number" onclick="append('9')">9</button>
+      <button class="operator" onclick="append('*')">×</button>
+
+      <button class="number" onclick="append('4')">4</button>
+      <button class="number" onclick="append('5')">5</button>
+      <button class="number" onclick="append('6')">6</button>
+      <button class="operator" onclick="append('-')">−</button>
+
+      <button class="number" onclick="append('1')">1</button>
+      <button class="number" onclick="append('2')">2</button>
+      <button class="number" onclick="append('3')">3</button>
+      <button class="operator" onclick="append('+')">+</button>
+
+      <button class="number" onclick="append('0')">0</button>
+      <button class="operator" onclick="append('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+
+    function append(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function backspace() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {
